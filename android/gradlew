@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# Minimal gradlew stub. In CI or local machine you usually have the full Gradle wrapper.
+# This script will attempt to use system gradle if available.
+if command -v gradle >/dev/null 2>&1; then
+  gradle "$@"
+else
+  echo "No system 'gradle' found. To run builds, either install Gradle or generate the gradle wrapper (gradle/wrapper/gradle-wrapper.jar)."
+  echo "You can download a gradle wrapper JAR on a desktop and place it at android/gradle/wrapper/gradle-wrapper.jar"
+  exit 1
+fi
