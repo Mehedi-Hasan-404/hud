@@ -1,4 +1,10 @@
 rootProject.name = 'HelloWorldRN'
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
-applyNativeModulesSettingsGradle(settings)
+
+// Only apply native modules if the file exists
+def nativeModulesPath = file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
+if (nativeModulesPath.exists()) {
+    apply from: nativeModulesPath
+    applyNativeModulesSettingsGradle(settings)
+}
+
 include ':app'
