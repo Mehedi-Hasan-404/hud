@@ -1,25 +1,30 @@
 apply plugin: "com.android.application"
 
 android {
-    compileSdkVersion 33
-
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    
     defaultConfig {
         applicationId "com.example.helloworld"
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
     }
-
+    
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"
 }
+
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
+applyNativeModulesAppBuildGradle(project)
